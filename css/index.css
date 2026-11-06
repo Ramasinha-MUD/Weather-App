@@ -1,0 +1,324 @@
+/*From Universe.io by Smit-Prajapati*/
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+/* background vid styles*/
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/*search bar style*/
+
+.container {
+    position: relative;
+    background: linear-gradient(135deg, rgb(179, 208, 253) 0%, rgb(164, 202, 248) 100%);
+    border-radius: 1000px;
+    padding: 8px;
+    z-index: 1;
+    width: min(460px, calc(100vw-32px));
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.search-container::after,
+.search-container::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+}
+
+.search-container::before {
+    top: -1px;
+    left: -1px;
+    background: linear-gradient(0deg, rgb(218, 232, 247) 0%, rgb(255, 255, 255) 100%);
+    z-index: -1;
+}
+
+.search-container::after {
+    bottom: -1px;
+    right: -1px;
+    background: linear-gradient(0deg, rgb(163, 206, 255) 0%, rgb(211, 232, 255) 100%);
+    box-shadow: rgba(79, 156, 232, 0.7019607843) 3px 3px 5px 0px, reba(141, 174, 206, 0.702) 5px 5px 20px 0px;
+    z-index: -2;
+}
+
+.input {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 8px 10px;
+    width: 100%;
+    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+    border: none;
+    color: chocolate;
+    font-size: 16px;
+    border-radius: 50px;
+}
+
+.input:focus {
+    outline: none;
+    background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
+}
+
+.search-container button {
+    display: grid;
+    flex: 0 0 32px;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-container button:hover,
+.search-container button:focus-visible {
+    background: rgba(79, 156, 232, 0, 18);
+}
+
+.search-container button:focus-visible {
+    outline: 2px solid #ae2c4a;
+    outline-offset: 1px;
+}
+
+.search__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.search__icon path {
+    fill: #bc30a9;
+}
+
+.weather-content {
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 24px;
+    padding: 80px 16px 24px;
+    position: relative;
+}
+
+.page-title {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    margin: 0;
+    text-align: right;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    font-family: "BBH Bartle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.card {
+    box-sizing: border-box;
+    width: min(100%, 240px);
+    padding: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 28px;
+    background: rgba(16, 34, 58, 0.78);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(12px);
+}
+
+.card-title {
+    margin: 0 0 18px;
+    color: darkblue;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.weather-overview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 112px;
+}
+
+.weather-icon {
+    width: 112px;
+    height: 112px;
+    flex: 0 0 auto;
+    overflow: visible;
+}
+
+.weather-cloud {
+    fill: #4cc03f;
+    stroke: #2415c7;
+    stroke-width: 0.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cloud-drift 2.4s ease-in-out infinite;
+}
+
+.rain-drops {
+    fill: none;
+    stroke: #0a6fea;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.rain-drops path {
+    animation: rain-fall 0.10s linear infinite;
+}
+
+.rain-drops path:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.rain-drops path:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes cloud-drift {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes rain-fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .weather-cloud,
+    .rain-drops path {
+        animation: none;
+    }
+}
+
+.temperature {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.weather-details {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(204, 29, 29, 0.33);
+}
+
+.condition {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.humidity {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    color: greenyellow;
+    font-size: 0.90rem;
+}
+
+.humidity strong {
+    color: #2415c7;
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        top: 12px;
+        right: 12px;
+    }
+
+    .weather-content {
+        padding-top: 90px;
+    }
+}
+
+.error-message {
+    min-height: 1.5em;
+    margin-bottom: 10px;
+    color: blueviolet;
+    text-align: center;
+}
+
+.weather-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.forecast {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.forecast-day {
+    min-width: 96px;
+    padding: 12px 8px;
+    text-align: center;
+    color: blueviolet;
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+}
+
+.forecast-day img {
+    width: 48px;
+    height: 48px;
+}
+
+.forecast-name {
+    font-weight: 600;
+}
