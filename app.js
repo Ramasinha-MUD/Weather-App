@@ -13,3 +13,30 @@ searchForm.addEventListener("submit", event => {
     event.preventDefault();
     searchForm();
 });
+
+async function getWeatherData(city) {
+    const res = await fetch(`${baseUrl}/forecast.json?key=${apiKey}&q=${encodeURIComponent(city)}&days=3`);
+    const data = await res.json();
+
+    if(!res.ok) {
+        throw new Error(data.Error ? data.Error.message : "Something went wrong. Try again");
+    }
+    return data;
+}
+
+async function search() {
+    const city = input.value.trim();
+
+    if(!city) {
+        displayError("Please enter a city");
+        return;
+    }
+
+    try {
+        const data = await getWeatherData(city);
+        displayWeatherInfo(data);
+    }catch(error) {
+        console.error(error);
+        displayError(error.message);
+    }
+}
