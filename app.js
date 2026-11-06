@@ -1,10 +1,10 @@
 const input = document.querySelector(".input");
 const searchForm = document.querySelector(".search-container");
-const temperatureE1 = document.querySelector(".temperature");
-const conditionE1 = document.querySelector(".condition");
-const humidityE1 = document.querySelector(".humidity strong");
-const weatherIconE1 = document.querySelector(".weather-icon");
-const forecastE1 = document.querySelector(".forecast");
+const temperatureEl = document.querySelector(".temperature");
+const conditionEl = document.querySelector(".condition");
+const humidityEl = document.querySelector(".humidity strong");
+const weatherIconEl = document.querySelector(".weather-icon");
+const forecastEl = document.querySelector(".forecast");
 
 const apiKey = "537953da19334b4099874647260611";
 const baseUrl = "https://api.weatherapi.com/v1";
@@ -42,11 +42,32 @@ async function search() {
 }
 
 function displayWeatherInfo(data) {
-    temperatureE1.textContent = Math.round(data.current.temp_c) + "°";
-    conditionE1.textContent = data.current.condition.text;
-    humidityE1.textContent = data.current.humidity + "%";
-    weatherIconE1.src = `https:${data.current.condition.icon}`;
-    weatherIconE1.alt = data.current.condition.text;
+    temperatureEl.textContent = Math.round(data.current.temp_c) + "°";
+    conditionEl.textContent = data.current.condition.text;
+    humidityEl.textContent = data.current.humidity + "%";
+    weatherIconEl.src = `https:${data.current.condition.icon}`;
+    weatherIconEl.alt = data.current.condition.text;
 
     displayForecast(data.forecast.forecastday);
+}
+
+function displayForecast(days) {
+    forecastE1.innerHTML = "";
+
+    days.forEach(day => {
+        const dayName = new Date(day.date + "T00:00:00").toLocaleDateString("en-US", {weekday:"long"});
+
+        const card = document.createElement("div");
+        card.className = "forecast-day";
+        card.innerHTML = `
+            <p>${dayName}</p>
+            <img src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+            <p>${Math.round(day.day.maxtemp_c)}° / ${Math.round(day.day.mintemp_c)}°</p>
+         `;
+         forecastEl.appendChild(card);
+    });
+}
+
+function displayError(message) {
+    alert(message);
 }
