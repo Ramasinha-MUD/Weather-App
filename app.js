@@ -8,3 +8,8 @@ const forecastE1 = document.querySelector(".forecast");
 
 const apiKey = "537953da19334b4099874647260611";
 const baseUrl = "https://api.weatherapi.com/v1";
+
+searchForm.addEventListener("submit", event => {
+    event.preventDefault();
+    searchForm();
+});
