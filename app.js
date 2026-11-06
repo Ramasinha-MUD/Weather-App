@@ -40,3 +40,13 @@ async function search() {
         displayError(error.message);
     }
 }
+
+function displayWeatherInfo(data) {
+    temperatureE1.textContent = Math.round(data.current.temp_c) + "°";
+    conditionE1.textContent = data.current.condition.text;
+    humidityE1.textContent = data.current.humidity + "%";
+    weatherIconE1.src = `https:${data.current.condition.icon}`;
+    weatherIconE1.alt = data.current.condition.text;
+
+    displayForecast(data.forecast.forecastday);
+}
