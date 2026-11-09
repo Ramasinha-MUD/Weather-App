@@ -15,9 +15,9 @@
 
     <!--Weather Search Button-->
     <div class="container">
-        <from class="Search-container">
+        <form class="search-container">
             <input class="input" type="text" placeholder="Enter City">
-            <button id="SearchBtn">
+            <button type="submit" id="searchBtn">
                 <svg viewBox="0 0 24 24" class="search__icon">
                     <g>
                         <path
@@ -26,10 +26,10 @@
                     </g>
                 </svg>
             </button>
-        </from>
+        </form>
     </div>
 
-    <main class="Weather-content">
+    <main class="weather-content">
         <h1 class="page-title">Weather Now</h1>
         <p class="status-message"></p>
 
@@ -38,7 +38,7 @@
                 <h2 class="card-title">Today</h2>
 
                 <div class="weather-overview">
-                    <img class="wether-icon" src="" alt="">
+                    <img class="weather-icon" src="" alt="">
                     <p class="temperature">--°</p>
                 </div>
 

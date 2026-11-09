@@ -11,7 +11,7 @@ const baseUrl = "https://api.weatherapi.com/v1";
 
 searchForm.addEventListener("submit", event => {
     event.preventDefault();
-    searchForm();
+    search();
 });
 
 async function getWeatherData(city) {
@@ -19,7 +19,7 @@ async function getWeatherData(city) {
     const data = await res.json();
 
     if(!res.ok) {
-        throw new Error(data.Error ? data.Error.message : "Something went wrong. Try again");
+        throw new Error(data.error ? data.error.message : "Something went wrong. Try again");
     }
     return data;
 }
@@ -52,7 +52,7 @@ function displayWeatherInfo(data) {
 }
 
 function displayForecast(days) {
-    forecastE1.innerHTML = "";
+    forecastEl.innerHTML = "";
 
     days.forEach(day => {
         const dayName = new Date(day.date + "T00:00:00").toLocaleDateString("en-US", {weekday:"long"});
